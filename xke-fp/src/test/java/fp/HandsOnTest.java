@@ -81,4 +81,10 @@ public class HandsOnTest {
 				Iterables.skip(HandsOn.enumPositiveInts(), 5), 5);
 		assertThat(fiveNextInts).containsOnly(5, 6, 7, 8, 9);
 	}
+
+	@Test
+	public void testFibs() {
+		assertThat(Iterables.limit(HandsOn.fibs(), 8)).containsOnly(0, 1, 1, 2,
+				3, 5, 8, 13);
+	}
 }

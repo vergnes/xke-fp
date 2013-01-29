@@ -95,4 +95,31 @@ public class HandsOn {
 			}
 		};
 	}
+
+	public static Iterable<Integer> fibs() {
+		return new Iterable<Integer>() {
+
+			@Override
+			public Iterator<Integer> iterator() {
+				return new AbstractIterator<Integer>() {
+
+					private int i = 0;
+					private int n_1 = 0;
+					private int n = 1;
+
+					@Override
+					protected Integer computeNext() {
+						if (i < 2) {
+							return i++;
+						} else {
+							int old = n_1;
+							n_1 = n;
+							n = old + n;
+							return n;
+						}
+					}
+				};
+			}
+		};
+	}
 }
