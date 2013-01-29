@@ -24,4 +24,13 @@ public class HandsOnTest {
 		Iterable<Double> newSalaries = HandsOn.lessThan(3000.0, salaries);
 		assertThat(newSalaries).containsOnly(1000.0, 2000.0, 2500.0);
 	}
+
+	@Test
+	public void testMap() {
+		Iterable<Double> salaries = Arrays.asList(1000.0, 2000.0, 2500.0,
+				3000.0, 4000.0);
+		Iterable<Double> newSalaries = HandsOn.increaseSalaries(salaries, 0.02);
+		assertThat(newSalaries).containsOnly(1020.0, 2040.0, 2550.0, 3060.0,
+				4080.0);
+	}
 }
