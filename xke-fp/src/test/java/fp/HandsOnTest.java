@@ -61,4 +61,12 @@ public class HandsOnTest {
 		Integer result = HandsOn.fold(values, 0, sum);
 		assertThat(result).isEqualTo(6);
 	}
+
+	@Test
+	public void testZip() {
+		Iterable<Integer> result = HandsOn.zipWith(sum, new ArrayList<Integer>(
+				Arrays.asList(1, 2)),
+				new ArrayList<Integer>(Arrays.asList(3, 4, 6)));
+		assertThat(result).containsOnly(4, 6);
+	}
 }

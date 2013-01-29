@@ -1,6 +1,8 @@
 package fp;
 
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.annotation.Nullable;
 
@@ -54,4 +56,25 @@ public class HandsOn {
 		return fold(values, function.apply(init).apply(next), function);
 	}
 
+	public static <T1, T2, R> Iterable<R> zipWith(
+			Function<T1, Function<T2, R>> function, Iterable<T1> list1,
+			Iterable<T2> list2) {
+		return zipWith(function, list1, list2, new LinkedList<R>());
+	}
+
+	private static <T1, T2, R> Iterable<R> zipWith(
+			Function<T1, Function<T2, R>> function, Iterable<T1> list1,
+			Iterable<T2> list2, List<R> result) {
+		Iterator<T1> i1 = list1.iterator();
+		Iterator<T2> i2 = list2.iterator();
+		if (!i1.hasNext() || !i2.hasNext()) {
+			return result;
+		}
+		T1 value1 = i1.next();
+		i1.remove();
+		T2 value2 = i2.next();
+		i2.remove();
+		result.add(function.apply(value1).apply(value2));
+		return zipWith(function, list1, list2, result);
+	}
 }
