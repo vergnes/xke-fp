@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
+import com.google.common.collect.AbstractIterator;
 import com.google.common.collect.Iterables;
 
 public class HandsOn {
@@ -76,5 +77,22 @@ public class HandsOn {
 		i2.remove();
 		result.add(function.apply(value1).apply(value2));
 		return zipWith(function, list1, list2, result);
+	}
+
+	public static Iterable<Integer> enumPositiveInts() {
+		return new Iterable<Integer>() {
+
+			@Override
+			public Iterator<Integer> iterator() {
+				return new AbstractIterator<Integer>() {
+					private int i = 0;
+
+					@Override
+					protected Integer computeNext() {
+						return i++;
+					}
+				};
+			}
+		};
 	}
 }

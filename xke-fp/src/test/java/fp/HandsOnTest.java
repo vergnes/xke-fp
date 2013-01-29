@@ -12,6 +12,7 @@ import javax.annotation.Nullable;
 import org.junit.Test;
 
 import com.google.common.base.Function;
+import com.google.common.collect.Iterables;
 
 public class HandsOnTest {
 
@@ -68,5 +69,16 @@ public class HandsOnTest {
 				Arrays.asList(1, 2)),
 				new ArrayList<Integer>(Arrays.asList(3, 4, 6)));
 		assertThat(result).containsOnly(4, 6);
+	}
+
+	@Test
+	public void testEnumPositiveInts() {
+		Iterable<Integer> fiveInts = Iterables.limit(
+				HandsOn.enumPositiveInts(), 5);
+		assertThat(fiveInts).containsOnly(0, 1, 2, 3, 4);
+
+		Iterable<Integer> fiveNextInts = Iterables.limit(
+				Iterables.skip(HandsOn.enumPositiveInts(), 5), 5);
+		assertThat(fiveNextInts).containsOnly(5, 6, 7, 8, 9);
 	}
 }
