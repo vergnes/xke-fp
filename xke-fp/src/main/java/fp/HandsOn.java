@@ -1,5 +1,7 @@
 package fp;
 
+import java.util.Iterator;
+
 import javax.annotation.Nullable;
 
 import com.google.common.base.Function;
@@ -39,6 +41,17 @@ public class HandsOn {
 				return input * (1 + d);
 			}
 		});
+	}
+
+	public static <T, R> R fold(Iterable<T> values, R init,
+			Function<R, Function<T, R>> function) {
+		Iterator<T> iterator = values.iterator();
+		if (!iterator.hasNext()) {
+			return init;
+		}
+		T next = iterator.next();
+		iterator.remove();
+		return fold(values, function.apply(init).apply(next), function);
 	}
 
 }
