@@ -3,7 +3,6 @@ package fp;
 import static org.fest.assertions.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -58,16 +57,15 @@ public class HandsOnTest {
 
 	@Test
 	public void testFold() {
-		List<Integer> values = new ArrayList<Integer>(Arrays.asList(1, 2, 3));
+		List<Integer> values = Arrays.asList(1, 2, 3);
 		Integer result = HandsOn.fold(values, 0, sum);
 		assertThat(result).isEqualTo(6);
 	}
 
 	@Test
 	public void testZip() {
-		Iterable<Integer> result = HandsOn.zipWith(sum, new ArrayList<Integer>(
-				Arrays.asList(1, 2)),
-				new ArrayList<Integer>(Arrays.asList(3, 4, 6)));
+		Iterable<Integer> result = HandsOn.zipWith(sum, Arrays.asList(1, 2),
+				Arrays.asList(3, 4, 6));
 		assertThat(result).containsOnly(4, 6);
 	}
 
