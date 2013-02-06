@@ -112,14 +112,14 @@ public class HandsOn {
 			public Iterator<Integer> iterator() {
 				return new AbstractIterator<Integer>() {
 
-					private int n_1 = 0;
-					private int n = 1;
+					private int a = 0;
+					private int b = 1;
 
 					@Override
 					protected Integer computeNext() {
-						int result = n_1;
-						n_1 = n_1 + n;
-						n = result;
+						int result = a;
+						a += b;
+						b = result;
 						return result;
 					}
 				};
